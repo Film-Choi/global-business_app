@@ -8,7 +8,6 @@ import {
   Image,
 } from "react-native";
 
-
 function LoginPage() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -41,7 +40,7 @@ function LoginPage() {
     <View style={styles.container}>
       <Image
         style={homeLogo}
-        source={require("./assets/crimson2positive.gif")}
+        source={require("../assets/crimson2positive.gif")}
         resizeMode="contain"
       />
 
