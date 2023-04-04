@@ -8,45 +8,39 @@ import {
   Image,
 } from "react-native";
 
-function LoginPage() {
+
+
+export default function LoginPage() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const titleStyle = {
-    fontSize: 60,
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 0,
+
+  const login = async (username, password) => {
+    const url = "'http://localhost:19006";
+    const data = { username, password };
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      const json = await response.json();
+      console.log(json);
+    } else {
+      console.error("HTTP error: " + response.status);
+    }
   };
 
-  const subtitleStyle = {
-    fontSize: 30,
-    color: "white",
-    fontWeight: "normal",
-    textAlign: "center",
-  };
-  const subtitleStyle2 = {
-    fontSize: 25,
-    color: "white",
-    fontWeight: "normal",
-    textAlign: "center",
-    marginBottom: 50,
-  };
-  const homeLogo = {
-    width: 200,
-    height: 200,
-  };
   return (
     <View style={styles.container}>
       <Image
-        style={homeLogo}
+        style={styles.homeLogo}
         source={require("../assets/crimson2positive.gif")}
         resizeMode="contain"
       />
 
-      <Text style={titleStyle}>KOREA</Text>
-      <Text style={subtitleStyle}>UNIVERSITY</Text>
-      <Text style={subtitleStyle2}>SEJONG CAMPUS</Text>
+      <Text style={styles.titleStyle}>KOREA UNIVERSITY</Text>
+      <Text style={styles.subtitleStyle}>SEJONG CAMPUS</Text>
+      <Text style={styles.subtitleStyle2}>GLOBAL BUSINESS</Text>
       <TextInput
         style={styles.input}
         onChangeText={(text) => setUsername(text)}
@@ -60,7 +54,11 @@ function LoginPage() {
         placeholder="Password"
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={() => alert("Login")}>
+      <TouchableOpacity style={styles.button} onPress={() => {
+        console.log(username);
+        console.log(password);
+        login(username, password);
+      }}>
         <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
     </View>
@@ -91,15 +89,37 @@ const styles = StyleSheet.create({
   button: {
     width: "80%",
     height: 50,
-    backgroundColor: "wheat",
+    backgroundColor: "#fff",
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonText: {
-    color: "#fff",
+    color: "#000000",
     fontSize: 18,
   },
+  titleStyle: {
+    fontSize: 60,
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 0,
+  },
+  subtitleStyle: {
+    fontSize: 40,
+    color: "white",
+    fontWeight: "normal",
+    textAlign: "center",
+  },
+  subtitleStyle2: {
+    fontSize: 25,
+    color: "white",
+    fontWeight: "normal",
+    textAlign: "center",
+    marginBottom: 50,
+  },
+  homeLogo: {
+    width: 200,
+    height: 200,
+  },
 });
-
-export default LoginPage;
