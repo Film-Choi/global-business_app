@@ -1,0 +1,34 @@
+package ku.globalBusinessApp.service;
+
+import ku.globalBusinessApp.dto.UserDto;
+import ku.globalBusinessApp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class LoginService {
+    UserRepository userRepository;
+    @Autowired
+    public LoginService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<UserDto> findMembers() {
+        return userRepository.findAll();
+    }
+    public boolean canLogin(Long studentId, String phoneNum) {
+
+        if(userRepository.getPhoneNum(studentId).size() != 0) {
+            String inputPhoneNum = userRepository.getPhoneNum(studentId).get(0);
+            if (phoneNum.equals(inputPhoneNum)) {
+                return true;
+            } else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+}
