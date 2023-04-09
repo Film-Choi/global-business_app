@@ -12,7 +12,7 @@ import { Text, View } from "react-native";
 import LoginPage from "./Components/LoginPage";
 import Board from "./Components/Board";
 import PostDetails from "./Components/PostDetails";
-
+import CreatorPage from "./Components/Creator";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -51,12 +51,17 @@ export default function App() {
         <Drawer.Screen
           name="LoginPage"
           component={LoginPage}
-          options={{ drawerLabel: "로그인" }}
+          options={{ drawerLabel: "로그인" }} //drawerLabel: () => null
         />
         <Drawer.Screen
           name="Root"
           component={RootStack}
           options={{ drawerLabel: "게시판" }}
+        />
+        <Drawer.Screen
+          name="Creator"
+          component={CreatorPage}
+          options={{ drawerLabel: "어플 정보 및 문의 사항" }}
         />
       </Drawer.Navigator>
     </NavigationContainer>
