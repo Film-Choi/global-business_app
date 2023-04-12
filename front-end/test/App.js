@@ -54,7 +54,7 @@ export default function App() {
           options={{ drawerLabel: "로그인" }} //drawerLabel: () => null
         />
         <Drawer.Screen
-          name="Root"
+          name="Board"
           component={RootStack}
           options={{ drawerLabel: "게시판" }}
         />
