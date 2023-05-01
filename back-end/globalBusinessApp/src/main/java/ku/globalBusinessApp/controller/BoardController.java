@@ -44,7 +44,11 @@ public class BoardController {
 
     @GetMapping("/board/view")
     public String boardView(Model model, Long id){
+        BoardDto boardTemp = boardService.boardview(id);
+        boardTemp.setViewCount(boardTemp.getViewCount()+1);
+        boardService.savePost(boardTemp);
         model.addAttribute("post", boardService.boardview(id));
+
         return "/board/boardView";
     }
 
