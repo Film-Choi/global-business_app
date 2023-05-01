@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        /* CSS to center the container element */
+        .container {
+            padding-top: 250px;
+        }
+    </style>
+</head>
+<body>
+<script src="/js/page.js"></script>
+<div class="container">
+    <div class="text-center">
+        <h1>Welcome to the Main Page</h1>
+        <p>Please select an option:</p>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary" onclick="getUrl('/admin/main/user/management')">유저 관리</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='/show/board/list'">게시글 관리</button>
+            <button type="button" class="btn btn-success" onclick="location.href='page3.html'">버스 시간표 관리</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

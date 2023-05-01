@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notice Board</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .container {
+      margin: 20px;
+    }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .title {
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .title:hover {
+      color: #555;
+    }
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    .register-btn {
+      background-color: #555;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .register-btn:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="topnav">
+    <a href="/admin/main/user/management">유저 관리</a>
+    <a class="active" href="/show/board/list">게시판 관리</a>
+    <a href="#contact">버스 시간표 관리</a>
+  </div>
+  <h1>Notice Board
+    <button class="register-btn" onclick="location.href = '/register/post'">Register</button>
+  </h1>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Writer</th>
+      <th>Header</th>
+      <th>Department</th>
+      <th>Upload Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="boardDto : ${boardDto}" class="boardDto">
+      <td th:text="${boardDto.id}"></td>
+      <td class="title" th:text="${boardDto.title}" th:attr="onclick=|location.href='/board/view?id=${boardDto.id}'|"></td>
+      <td th:text="${boardDto.writer}"></td>
+      <td th:text="${boardDto.header}"></td>
+      <td th:text="${boardDto.department}"></td>
+      <td th:text="${boardDto.uploadTime}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script>
+    function toggleContent(title) {
+      title.parentElement.classList.toggle('active');
+    }
+  </script>
+</body>

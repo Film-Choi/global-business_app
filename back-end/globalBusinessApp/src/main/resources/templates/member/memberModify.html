@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <title>Register Notice</title>
+    <style>
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			padding: 20px;
+			background-color: #f0f0f0;
+			width: 60%;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		}
+
+		label {
+			font-size: 20px;
+			margin-bottom: 10px;
+			color: #333;
+		}
+
+		input[type="text"] {
+			font-size: 16px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ddd;
+			margin-bottom: 20px;
+			width: 50%;
+			box-sizing: border-box;
+		}
+
+		textarea {
+			font-size: 16px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ddd;
+			margin-bottom: 20px;
+			width: 100%;
+			box-sizing: border-box;
+			resize: vertical;
+			min-height: 400px;
+		}
+
+		button[type="submit"] {
+			background-color: #555;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #333;
+		}
+
+      .dropdowns {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .dropdowns label {
+      width: 45%;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .dropdowns select {
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      width: 50%;
+    }
+	</style>
+</head>
+<body>
+<div class="container">
+    <h1>Register Notice</h1>
+    <form th:action="@{/member/update/{id}(id=${member.studentId})}" method="post">
+        <label for="studentId">StudentID:</label>
+        <input type="text" id="studentId" name="studentId" th:value="${member.studentId}" required>
+        <label for="studentName">StudentName:</label>
+        <input type="text" id="studentName" name="studentName" th:value="${member.studentName}" required>
+        <div class="dropdowns">
+            <label for="major">major:</label>
+            <select name="major" id="major">
+                <option value="글로벌학부">글로벌학부</option>
+                <option value="융합경영학부">융합경영학부</option>
+                <option value="융합경영학부 글로벌경영전공">융합경영학부 글로벌경영전공</option>
+                <option value="융합경영학부 디지털경영전공">융합경영학부 디지털경영전공</option>
+                <option value="글로벌학부 영미학전공">글로벌학부 영미학전공</option>
+                <option value="글로벌학부 중국학전공">글로벌학부 중국학전공</option>
+                <option value="글로벌학부 한국학전공">글로벌학부 한국학전공</option>
+                <option value="글로벌학부 독일학전공">글로벌학부 독일학전공</option>
+                <option value="표준지식학과">표준지식학과</option>
+            </select>
+            <label for="gender">gender:</label>
+            <select name="gender" id="gender">
+                <option value="1">남자</option>
+                <option value="0">여자</option>
+            </select>
+        </div>
+        <label for="phoneNum">PhoneNum:</label>
+        <textarea id="phoneNum" name="phoneNum" th:text="${member.phoneNum}" required></textarea>
+        <label for="email">email:</label>
+        <input type="text" id="email" name="email" th:value="${member.email}" required>
+        <button type="submit">수정</button>
+    </form>
+</div>
+</body>
+</html>

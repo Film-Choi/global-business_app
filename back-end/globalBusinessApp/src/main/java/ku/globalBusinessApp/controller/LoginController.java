@@ -19,13 +19,6 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @GetMapping("show")
-    public String showController(Model model){
-        List<UserDto> members = loginService.findMembers();
-        model.addAttribute("members", loginService.findMembers());
-        return "members/memberList";
-    }
-
     @PostMapping ("login")
     @ResponseBody
     public HashMap<String, String> loginController(@RequestBody UserDto userDto){

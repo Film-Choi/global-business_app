@@ -13,11 +13,11 @@ import javax.persistence.Table;
 @Setter
 public class UserDto {
     @Id
-    public Long studentId;
-    public String studentName;
-    public String major;
-    public Long gender;
-    public String phoneNum;
-    public String email;
+    private Long studentId;
+    private String studentName;
+    private String major;
+    private Long gender;
+    private String phoneNum;
+    private String email;
 
 }

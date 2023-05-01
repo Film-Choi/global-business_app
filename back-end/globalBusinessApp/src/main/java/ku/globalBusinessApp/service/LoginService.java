@@ -15,9 +15,6 @@ public class LoginService {
         this.userRepository = userRepository;
     }
 
-    public List<UserDto> findMembers() {
-        return userRepository.findAll();
-    }
     public boolean canLogin(Long studentId, String phoneNum) {
 
         if(userRepository.getPhoneNum(studentId).size() != 0) {

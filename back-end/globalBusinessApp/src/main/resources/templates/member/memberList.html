@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notice Board</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .container {
+      margin: 20px;
+    }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    .register-btn {
+      background-color: #555;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .register-btn:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+    <div class="topnav">
+        <a class="active" href="/admin/main/user/management">유저 관리</a>
+        <a href="/show/board/list">게시판 관리</a>
+        <a href="#contact">버스 시간표 관리</a>
+    </div>
+    <h1>Member List
+        <button class="register-btn" onclick="location.href = '/add/member'">add member</button>
+    </h1>
+    <table>
+        <thead>
+        <tr>
+            <th>StudentID</th>
+            <th>Name</th>
+            <th>Major</th>
+            <th>Gender</th>
+            <th>PhoneNum</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member : ${members}" class ="members">
+            <td th:text="${member.studentId}" th:attr="onclick=|location.href='/member/view?id=${member.studentId}'|"></td>
+            <td th:text="${member.studentName}"></td>
+            <td th:text="${member.major}"></td>
+            <td th:text="${member.gender}"></td>
+            <td th:text="${member.phoneNum}"></td>
+            <td th:text="${member.email}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>

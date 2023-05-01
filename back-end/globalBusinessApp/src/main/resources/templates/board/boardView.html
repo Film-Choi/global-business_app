@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>게시글상세페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+          h1 {
+        font-size: 2em;
+        margin-bottom: 0.5em;
+    }
+
+    p {
+        margin-top: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+
+    .label {
+        font-weight: bold;
+        width: 120px;
+    }
+
+    .content {
+        margin-left: 1em;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1em;
+    }
+
+    .button {
+        display: inline-block;
+        margin-right: 1em;
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.8em;
+    }
+
+    .button:hover {
+        background-color: #0062cc;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="field">
+        <div class="label">Title:</div>
+        <div class="content"><h1 th:text="${post.title}">제목입니다</h1></div>
+    </div>
+    <div class="field">
+        <div class="label">Writer:</div>
+        <div class="content"><p th:text="${post.writer}" >작성자</p></div>
+    </div>
+    <div class="field">
+        <div class="label">Header:</div>
+        <div class="content"><p th:text="${post.header}">헤더</p></div>
+    </div>
+    <div class="field">
+        <div class="label">Department:</div>
+        <div class="content"><p th:text="${post.department}">전공</p></div>
+    </div>
+    <div class="field">
+        <div class="label">Upload Time:</div>
+        <div class="content"><p th:text="${post.uploadTime}">업로드시간</p></div>
+    </div>
+    <div >
+        <div class="label">Content:</div>
+        <div class="content"><p th:text="${post.content}">내용</p></div>
+    </div>
+    <div class="buttons">
+        <a class="button" th:href="@{/board/delete(id=${post.id})}">Delete</a>
+        <a class="button" th:href="@{/board/modify/{id}(id = ${post.id})}">Modify</a>
+    </div>
+</div>
+</body>
+</html>
