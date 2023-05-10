@@ -8,8 +8,6 @@ import {
   Image,
 } from "react-native";
 
-
-
 export default function LoginPage() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -54,17 +52,19 @@ export default function LoginPage() {
         placeholder="Password"
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={() => {
-        console.log(username);
-        console.log(password);
-        login(username, password);
-      }}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          console.log(username);
+          console.log(password);
+          login(username, password);
+        }}
+      >
         <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
