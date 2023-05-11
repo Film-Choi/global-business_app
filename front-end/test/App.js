@@ -8,7 +8,7 @@ import {
 } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { Text, View } from "react-native";
-
+import PhoneButton from "./Components/Phone/Phonebutton";
 import LoginPage from "./Components/LoginPage";
 import Board from "./Components/Board";
 import Calendarpage from "./Components/Calendar/CalendarScreen";
@@ -69,6 +69,11 @@ export default function App() {
           name="Creator"
           component={CreatorPage}
           options={{ drawerLabel: "어플 정보 및 문의 사항" }}
+        />
+        <Drawer.Screen
+          name="PhoneNum"
+          component={PhoneButton}
+          options={{ drawerLabel: "전화번호" }}
         />
       </Drawer.Navigator>
     </NavigationContainer>

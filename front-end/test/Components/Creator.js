@@ -8,10 +8,7 @@ import {
   Image,
 } from "react-native";
 
-
-
 export default function CreatorPage() {
-
   return (
     <View style={styles.container}>
       <Image
@@ -24,30 +21,29 @@ export default function CreatorPage() {
       <Text style={styles.subtitleStyle}>SEJONG CAMPUS</Text>
       <Text style={styles.subtitleStyle2}>GLOBAL BUSINESS</Text>
 
-      <text>문의사항/건의사항</text>
-      <text>글로벌비즈니스대학 학생회</text>
-      <text>kusgolbalbusiness@gmail.com</text>
+      <Text>문의사항/건의사항</Text>
+      <Text>글로벌비즈니스대학 학생회</Text>
+      <Text>kusgolbalbusiness@gmail.com</Text>
 
-      <text>제작/개발</text>
-      <text>2023 글로벌비즈니스대학 학생회장 이서준</text>
-      <text>컴퓨터융합소프트웨어 김기욱</text>
-      <text>컴퓨터융합소프트웨어 최현준</text>
-      <text>컴퓨터융합소프트웨어 김기환</text>
-      <text>컴퓨터융합소프트웨어 유창호</text>
+      <Text>제작/개발</Text>
+      <Text>2023 글로벌비즈니스대학 학생회장 이서준</Text>
+      <Text>컴퓨터융합소프트웨어 김기욱</Text>
+      <Text>컴퓨터융합소프트웨어 최현준</Text>
+      <Text>컴퓨터융합소프트웨어 김기환</Text>
+      <Text>컴퓨터융합소프트웨어 유창호</Text>
 
-      <text>기여</text>
-      <text>총무팀 홍길동</text>
-      <text>총무팀 홍길동</text>
+      <Text>기여</Text>
+      <Text>총무팀 홍길동</Text>
+      <Text>총무팀 홍길동</Text>
 
-      <text>지원</text>
-      <text>글로벌비즈니스대학 행정실 홍길동</text>
+      <Text>지원</Text>
+      <Text>글로벌비즈니스대학 행정실 홍길동</Text>
 
-      <text>개발자 연락처</text>
-      <text>rlghks131@korea.ac.kr</text>
+      <Text>개발자 연락처</Text>
+      <Text>rlghks131@korea.ac.kr</Text>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
