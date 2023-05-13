@@ -8,11 +8,13 @@ import {
 } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { Text, View } from "react-native";
-
+import PhoneButton from "./Components/Phone/Phonebutton";
 import LoginPage from "./Components/LoginPage";
 import Board from "./Components/Board";
+import Calendarpage from "./Components/Calendar/CalendarScreen";
 import PostDetails from "./Components/PostDetails";
 import CreatorPage from "./Components/Creator";
+import CalendarScreen from "./Components/Calendar/CalendarScreen";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -59,9 +61,19 @@ export default function App() {
           options={{ drawerLabel: "게시판" }}
         />
         <Drawer.Screen
+          name="Calendar"
+          component={CalendarScreen}
+          options={{ drawerLabel: "캘린더" }}
+        />
+        <Drawer.Screen
           name="Creator"
           component={CreatorPage}
           options={{ drawerLabel: "어플 정보 및 문의 사항" }}
+        />
+        <Drawer.Screen
+          name="PhoneNum"
+          component={PhoneButton}
+          options={{ drawerLabel: "전화번호" }}
         />
       </Drawer.Navigator>
     </NavigationContainer>
