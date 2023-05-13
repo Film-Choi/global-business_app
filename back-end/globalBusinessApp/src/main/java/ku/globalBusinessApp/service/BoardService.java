@@ -31,4 +31,7 @@ public class BoardService {
     public void boardDelete(Long id){
         boardRepository.deleteById(id);
     }
+    public List<BoardDto> selectPostByDepartment(String department){
+        return boardRepository.findByDepartment(department);
+    }
 }

@@ -98,7 +98,8 @@
     </thead>
     <tbody>
     <tr th:each="boardDto : ${boardDto}" class="boardDto">
-      <td th:text="${boardDto.id}"></td>
+      <td th:text="${boardDtoStat.count}"></td>
+<!--      <td th:text="${boardDto.id}"></td>-->
       <td class="title" th:text="${boardDto.title}" th:attr="onclick=|location.href='/board/view?id=${boardDto.id}'|"></td>
       <td th:text="${boardDto.writer}"></td>
       <td th:text="${boardDto.header}"></td>

@@ -7,11 +7,10 @@ import ku.globalBusinessApp.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -77,5 +76,21 @@ public class BoardController {
 
         boardService.savePost(boardTemp);
         return "redirect:/show/board/list";
+    }
+
+    @PostMapping("/show/board/category")
+    @ResponseBody
+    public List<BoardDto> showCategoryPost(@RequestBody BoardDto post){
+
+        List<BoardDto> list = boardService.selectPostByDepartment(post.getDepartment());
+        return list;
+    }
+
+    @PostMapping("/show/board")
+    @ResponseBody
+    public List<BoardDto> showBoard(){
+
+        List<BoardDto> boardDto = boardService.showPost();;
+        return boardDto;
     }
 }
