@@ -7,24 +7,24 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-export default function LoginPage() {
+export default function LoginPage({ setLoggedIn }) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigation = useNavigation();
 
-  const login = async (username, password) => {
-    const url = "'http://localhost:19006";
-    const data = { username, password };
-    const response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (response.ok) {
-      const json = await response.json();
-      console.log(json);
+  const login = async () => {
+    // 로그인 로직을 구현합니다.
+    // 실제 서버와 통신하여 로그인을 처리해야 합니다.
+
+    // 임시로 아이디와 비밀번호가 "aaa"와 "bbb"인 경우에만 로그인 성공으로 가정합니다.
+    if (username === "aaa" && password === "bbb") {
+      // 로그인 성공 시 화면 이동을 처리합니다.
+      setLoggedIn(true);
+      navigation.navigate("CalendarScreen");
     } else {
-      console.error("HTTP error: " + response.status);
+      console.log("로그인 실패");
     }
   };
 
@@ -52,14 +52,7 @@ export default function LoginPage() {
         placeholder="Password"
         secureTextEntry
       />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          console.log(username);
-          console.log(password);
-          login(username, password);
-        }}
-      >
+      <TouchableOpacity style={styles.button} onPress={login}>
         <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
     </View>
@@ -71,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "brown",
+    backgroundColor: "red",
   },
   text: {
     fontSize: 50,

@@ -50,7 +50,7 @@ const CalendarView = () => {
   const fetchEvents = async () => {
     try {
       const response = await fetch(
-        "https://www.googleapis.com/calendar/v3/calendars/charisma0824@gmail.com/events?key=AIzaSyB-UILV07Vv0aSxuVT5XNvF7aXTMnt-sYY"
+        "https://www.googleapis.com/calendar/v3/calendars/kusgbcalendar@gmail.com/events?key=AIzaSyBEtwTS9LToZ9hHWpPjw2zrbLRjHzvTARg"
       );
       const data = await response.json();
       setEvents(data.items);
@@ -66,7 +66,7 @@ const CalendarView = () => {
         ...acc,
         [date]: {
           selected: true,
-          selectedColor: "wheat",
+          selectedColor: "red",
         },
       };
     }, {});

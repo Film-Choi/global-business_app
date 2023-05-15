@@ -1,53 +1,67 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 
-const PostDetails = ({ route }) => {
+const PostDetails = ({ route, navigation }) => {
   const { post } = route.params;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.titleBar}>
-        <View>
-          <Text style={styles.author}>{post.author}</Text>
-          <Text style={styles.author}>{post.createdAt}</Text>
+    <ScrollView style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text style={styles.goBackText}>뒤로가기</Text>
+      </TouchableOpacity>
+      <View style={styles.postHeader}>
+        <View style={styles.postAD}>
+          <Text style={styles.authorText}>작성자: {post.author}</Text>
+          <Text style={styles.dateText}>날짜: {post.date}</Text>
         </View>
-        <View style={{ alignItems: "flex-end" }}>
-          <Text style={styles.viewcount}>{post.viewcount} view</Text>
-        </View>
+        <Text style={styles.contentView}>{post.viewCount}view</Text>
       </View>
-
-      <View style={styles.container}>
-        <Text style={styles.title}>{post.title}</Text>
-        <Text style={styles.content}>{post.content}</Text>
+      <View style={styles.contentText}>
+        <Text style={styles.contentText}>{post.content}</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  titleBar: {
-    marginVertical: 10,
-    paddingBottom: 10,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-  },
   container: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "white",
     padding: 10,
   },
-  title: {
-    fontSize: 30,
+  goBackText: {
+    color: "blue",
+    marginBottom: 10,
+  },
+  postHeader: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    paddingBottom: 15,
+    borderColor: "gray",
+  },
+  postAD: {
+    marginLeft: 10,
+  },
+  contentView: {
+    fontSize: 10,
     fontWeight: "bold",
-    margin: 20,
+    textAlign: "center",
   },
-  content: {
-    fontSize: 15,
+  authorText: {
+    fontWeight: "bold",
+    marginBottom: 5,
   },
+  dateText: {
+    marginBottom: 5,
+  },
+  contentText: { textAlign: "center", fontSize: 20, marginTop: 20 },
 });
 
 export default PostDetails;
