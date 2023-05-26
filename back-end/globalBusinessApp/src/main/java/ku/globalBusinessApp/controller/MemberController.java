@@ -5,6 +5,7 @@ import ku.globalBusinessApp.dto.UserDto;
 import ku.globalBusinessApp.service.BoardService;
 import ku.globalBusinessApp.service.LoginService;
 import ku.globalBusinessApp.service.MemberService;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,11 @@ import java.util.List;
 
 @Controller
 public class MemberController {
+
+
+    @Autowired
+    private LoginService loginService;
+
     private final MemberService memberService;
     @Autowired
     public MemberController(MemberService memberService) {

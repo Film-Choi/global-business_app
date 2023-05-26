@@ -9,13 +9,11 @@
 <div class="content">
   <h1>Admin Page Login</h1>
 
-  <label for="UserName">UserName</label>
-  <input type="text" id="UserName" placeholder="UserName"><br>
-
-  <label for="userPW">UserPassword</label>
-  <input type="text" id="userPW" placeholder="UserPw"><br>
-
-  <button onclick="postData()">연결</button>
+  <form action="/loginpc" method="post">
+    <input type="text" name="adminId" placeholder="myadmin"/>
+    <input type="text" name="adminPW"/>
+    <button type="submit">Login</button>
+  </form>
 </div>
 </body>
 </html>

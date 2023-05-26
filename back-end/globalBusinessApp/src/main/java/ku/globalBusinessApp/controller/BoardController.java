@@ -5,6 +5,7 @@ import ku.globalBusinessApp.dto.UserDto;
 import ku.globalBusinessApp.service.BoardService;
 import ku.globalBusinessApp.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ import java.util.List;
 
 @Controller
 public class BoardController {
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
     private final BoardService boardService;
     @Autowired
     public BoardController(BoardService boardService) {

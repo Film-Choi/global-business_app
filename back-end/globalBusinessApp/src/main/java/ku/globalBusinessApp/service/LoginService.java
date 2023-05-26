@@ -1,6 +1,7 @@
 package ku.globalBusinessApp.service;
 
 import ku.globalBusinessApp.dto.UserDto;
+import ku.globalBusinessApp.repository.AdminUserRepository;
 import ku.globalBusinessApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import java.util.List;
 
 @Service
 public class LoginService {
+    AdminUserRepository adminUserRepository;
+
     UserRepository userRepository;
     @Autowired
     public LoginService(UserRepository userRepository) {
@@ -28,4 +31,5 @@ public class LoginService {
             return false;
         }
     }
+
 }
