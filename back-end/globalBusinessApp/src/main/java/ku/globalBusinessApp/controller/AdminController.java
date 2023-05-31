@@ -46,28 +46,6 @@ public class AdminController {
         return "admin/adminLogin";
     }
 
-//    @PostMapping("/admin/login")
-//    @ResponseBody
-//    public HashMap<String, String> makeConnect(AdminDto user){
-//        System.out.println(user.getUserName());
-//       HashMap<String, String> result = new HashMap<>();
-//       result.put("status","fail");
-//        if(user.getUserName().equals("test")){
-//            if(user.getUserPW().equals("test")){
-//                result.put("status","success");
-//            }
-//        }
-//
-//        return result;
-//    }
-
-    @PostMapping("/loginpc")
-    public String loginpc(String adminId, String adminPW){
-        AdminDto adminDto = adminUserRepository.returnAdmin(adminId, adminPW);
-        System.out.println("login 시도 컨트롤러" + adminDto.getPassword());
-        return "admin/adminMain";
-    }
-
     @GetMapping("/admin/main")
     public String successController(Model model){
         return "admin/adminMain";

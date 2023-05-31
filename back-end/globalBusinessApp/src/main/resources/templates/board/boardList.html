@@ -78,12 +78,12 @@
 <body>
 <div class="container">
   <div class="topnav">
-    <a href="/admin/main/user/management">유저 관리</a>
-    <a class="active" href="/show/board/list">게시판 관리</a>
+    <a href="/admin/member/list">유저 관리</a>
+    <a class="active" href="/admin/board/list">게시판 관리</a>
     <a href="#contact">버스 시간표 관리</a>
   </div>
   <h1>Notice Board
-    <button class="register-btn" onclick="location.href = '/register/post'">Register</button>
+    <button class="register-btn" onclick="location.href = '/admin/board/register'">Register</button>
   </h1>
   <table>
     <thead>
@@ -100,7 +100,7 @@
     <tr th:each="boardDto : ${boardDto}" class="boardDto">
       <td th:text="${boardDtoStat.count}"></td>
 <!--      <td th:text="${boardDto.id}"></td>-->
-      <td class="title" th:text="${boardDto.title}" th:attr="onclick=|location.href='/board/view?id=${boardDto.id}'|"></td>
+      <td class="title" th:text="${boardDto.title}" th:attr="onclick=|location.href='/admin/board/view?id=${boardDto.id}'|"></td>
       <td th:text="${boardDto.writer}"></td>
       <td th:text="${boardDto.header}"></td>
       <td th:text="${boardDto.department}"></td>

@@ -71,12 +71,12 @@
 <body>
 <div class="container">
     <div class="topnav">
-        <a class="active" href="/admin/main/user/management">유저 관리</a>
-        <a href="/show/board/list">게시판 관리</a>
+        <a class="active" href="/admin/member/list">유저 관리</a>
+        <a href="/admin/board/list">게시판 관리</a>
         <a href="#contact">버스 시간표 관리</a>
     </div>
     <h1>Member List
-        <button class="register-btn" onclick="location.href = '/add/member'">add member</button>
+        <button class="register-btn" onclick="location.href = '/admin/member/add'">add member</button>
     </h1>
     <table>
         <thead>
@@ -91,7 +91,7 @@
         </thead>
         <tbody>
         <tr th:each="member : ${members}" class ="members">
-            <td th:text="${member.studentId}" th:attr="onclick=|location.href='/member/view?id=${member.studentId}'|"></td>
+            <td th:text="${member.studentId}" th:attr="onclick=|location.href='/admin/member/view?id=${member.studentId}'|"></td>
             <td th:text="${member.studentName}"></td>
             <td th:text="${member.major}"></td>
             <td th:text="${member.gender}"></td>

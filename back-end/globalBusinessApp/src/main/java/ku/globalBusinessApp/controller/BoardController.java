@@ -25,27 +25,27 @@ public class BoardController {
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
-    @GetMapping(value = "/show/board/list")
+    @GetMapping(value = "admin/board/list")
     public String showPostController(Model model) throws SQLException {
         List<BoardDto> boardDto = boardService.showPost();
         System.out.println(boardDto);
         model.addAttribute("boardDto", boardService.showPost());
         return "/board/boardList";
     }
-    @GetMapping(value = "/register/post")
+    @GetMapping(value = "admin/board/register")
     public String registerPostController(Model model) throws SQLException {
         return "/board/register";
     }
 
-    @PostMapping (value = "/register/post/finish")
+    @PostMapping (value = "admin/board/register/finish")
     public String insertPostController(BoardDto post){
 
         boardService.savePost(post);
 
-        return "redirect:/show/board/list";
+        return "redirect:/admin/board/list";
     }
 
-    @GetMapping("/board/view")
+    @GetMapping("admin/board/view")
     public String boardView(Model model, Long id){
         BoardDto boardTemp = boardService.boardview(id);
         boardTemp.setViewCount(boardTemp.getViewCount()+1);
@@ -55,20 +55,20 @@ public class BoardController {
         return "/board/boardView";
     }
 
-    @GetMapping("/board/delete")
+    @GetMapping("admin/board/delete")
     public String boardDelete(Long id){
         boardService.boardDelete(id);
-        return "redirect:/show/board/list";
+        return "redirect:/admin/board/list";
     }
 
-    @GetMapping("/board/modify/{id}")
+    @GetMapping("admin/board/modify/{id}")
     public String boardModify(@PathVariable("id") Long id, Model model){
         model.addAttribute("post", boardService.boardview(id));
 
         return "/board/boardModify";
     }
 
-    @PostMapping("/board/update/{id}")
+    @PostMapping("admin/board/update/{id}")
     public String boardUpdate(@PathVariable("id") Long id, BoardDto post){
         BoardDto boardTemp = boardService.boardview(id);
 
@@ -79,7 +79,7 @@ public class BoardController {
         boardTemp.setContent(post.getContent());
 
         boardService.savePost(boardTemp);
-        return "redirect:/show/board/list";
+        return "redirect:/admin/board/list";
     }
 
     @PostMapping("/show/board/category")

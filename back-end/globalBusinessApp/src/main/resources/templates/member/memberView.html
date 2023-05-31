@@ -91,8 +91,8 @@
     <div class="content"><p th:text="${member.email}">Email</p></div>
   </div>
   <div class="buttons">
-    <a class="button" th:href="@{/member/delete(id=${member.studentId})}">Delete</a>
-    <a class="button" th:href="@{/member/modify/{id}(id = ${member.studentId})}">Modify</a>
+    <a class="button" th:href="@{/admin/member/delete(id=${member.studentId})}">Delete</a>
+    <a class="button" th:href="@{/admin/member/modify/{id}(id = ${member.studentId})}">Modify</a>
   </div>
 </div>
 </body>

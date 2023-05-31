@@ -91,7 +91,7 @@
 <body>
 <div class="container">
     <h1>Register Notice</h1>
-    <form th:action="@{/member/update/{id}(id=${member.studentId})}" method="post">
+    <form th:action="@{/admin/member/update/{id}(id=${member.studentId})}" method="post">
         <label for="studentId">StudentID:</label>
         <input type="text" id="studentId" name="studentId" th:value="${member.studentId}" required>
         <label for="studentName">StudentName:</label>

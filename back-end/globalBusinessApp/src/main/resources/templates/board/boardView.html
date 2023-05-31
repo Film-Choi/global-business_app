@@ -95,8 +95,8 @@
         <div class="content"><p th:text="${post.content}">내용</p></div>
     </div>
     <div class="buttons">
-        <a class="button" th:href="@{/board/delete(id=${post.id})}">Delete</a>
-        <a class="button" th:href="@{/board/modify/{id}(id = ${post.id})}">Modify</a>
+        <a class="button" th:href="@{/admin/board/delete(id=${post.id})}">Delete</a>
+        <a class="button" th:href="@{/admin/board/modify/{id}(id = ${post.id})}">Modify</a>
     </div>
 </div>
 </body>

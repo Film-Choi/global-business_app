@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/adminLogin", "/testtest").permitAll()
+                .antMatchers("/adminLogin").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
@@ -38,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("adminId")
                 .passwordParameter("adminPW")
                 .loginProcessingUrl("/loginpc")
-                .defaultSuccessUrl("/admin/main", true)
-                .failureUrl("/show/board/list");
+                .defaultSuccessUrl("/admin/main", true);
+//                .failureUrl("/show/board/list");
 //                .and()
 //                .logout()
 //                .logoutSuccessUrl("/adminLogin")

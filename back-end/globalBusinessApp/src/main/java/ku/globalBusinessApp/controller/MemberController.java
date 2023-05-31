@@ -28,46 +28,46 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
-    @GetMapping("/admin/main/user/management")
+    @GetMapping("/admin/member/list")
     public String showMemberController(Model model){
         List<UserDto> members = memberService.findMembers();
         model.addAttribute("members", memberService.findMembers());
         return "/member/memberList";
     }
 
-    @GetMapping(value = "/add/member")
+    @GetMapping(value = "/admin/member/add")
     public String addMemberController(Model model) throws SQLException {
         return "/member/addMember";
     }
 
-    @PostMapping(value = "/add/member/finish")
+    @PostMapping(value = "/admin/member/add/finish")
     public String insertMemberController(UserDto user){
 
         memberService.savaMember(user);
 
-        return "redirect:/admin/main/user/management";
+        return "redirect:/admin/member/list";
     }
 
-    @GetMapping("/member/view")
+    @GetMapping("admin/member/view")
     public String boardView(Model model, Long id){
         model.addAttribute("member", memberService.memberView(id));
         return "/member/memberView";
     }
 
-    @GetMapping("/member/delete")
+    @GetMapping("admin/member/delete")
     public String boardDelete(Long id){
         memberService.memberDelete(id);
-        return "redirect:/admin/main/user/management";
+        return "redirect:/admin/member/list";
     }
 
-    @GetMapping("/member/modify/{id}")
+    @GetMapping("admin/member/modify/{id}")
     public String boardModify(@PathVariable("id") Long id, Model model){
         model.addAttribute("member", memberService.memberView(id));
 
         return "/member/memberModify";
     }
 
-    @PostMapping("/member/update/{id}")
+    @PostMapping("admin/member/update/{id}")
     public String boardUpdate(@PathVariable("id") Long id,UserDto member){
         UserDto userTemp = memberService.memberView(id);
 
@@ -79,6 +79,6 @@ public class MemberController {
         userTemp.setEmail(member.getEmail());
 
         memberService.savaMember(member);
-        return "redirect:/admin/main/user/management";
+        return "redirect:/admin/member/list";
     }
 }
