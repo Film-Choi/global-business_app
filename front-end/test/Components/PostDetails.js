@@ -12,9 +12,6 @@ const PostDetails = ({ route, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.goBackText}>뒤로가기</Text>
-      </TouchableOpacity>
       <View style={styles.postHeader}>
         <View style={styles.postAD}>
           <Text style={styles.authorText}>작성자: {post.author}</Text>
@@ -33,6 +30,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    backgroundColor: "white",
   },
   goBackText: {
     color: "blue",
@@ -56,10 +54,13 @@ const styles = StyleSheet.create({
   },
   authorText: {
     fontWeight: "bold",
+    fontSize: 18,
     marginBottom: 5,
   },
   dateText: {
+    fontWeight: "bold",
     marginBottom: 5,
+    fontSize: 18,
   },
   contentText: { textAlign: "center", fontSize: 20, marginTop: 20 },
 });
