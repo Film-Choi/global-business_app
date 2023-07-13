@@ -31,14 +31,6 @@ public class AdminController {
         this.adminLoginService = adminLoginService;
     }
 
-    @GetMapping("/createAdmin")
-    public String createAdmin(Model model){
-        AdminDto admin = new AdminDto();
-        admin.setAdminId("test");
-        admin.setRole("ROLE_ADMIN");
-        adminLoginService.saveAdmin(admin,"test");
-        return "admin/adminLogin";
-    }
 
     @GetMapping("/adminLogin")
     public String adminController(Model model){

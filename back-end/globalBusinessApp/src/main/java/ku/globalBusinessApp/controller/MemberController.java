@@ -9,9 +9,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -49,26 +47,26 @@ public class MemberController {
     }
 
     @GetMapping("admin/member/view")
-    public String boardView(Model model, Long id){
+    public String memberView(Model model, Long id){
         model.addAttribute("member", memberService.memberView(id));
         return "/member/memberView";
     }
 
     @GetMapping("admin/member/delete")
-    public String boardDelete(Long id){
+    public String memberDelete(Long id){
         memberService.memberDelete(id);
         return "redirect:/admin/member/list";
     }
 
     @GetMapping("admin/member/modify/{id}")
-    public String boardModify(@PathVariable("id") Long id, Model model){
+    public String memberModify(@PathVariable("id") Long id, Model model){
         model.addAttribute("member", memberService.memberView(id));
 
         return "/member/memberModify";
     }
 
     @PostMapping("admin/member/update/{id}")
-    public String boardUpdate(@PathVariable("id") Long id,UserDto member){
+    public String memberUpdate(@PathVariable("id") Long id,UserDto member){
         UserDto userTemp = memberService.memberView(id);
 
         userTemp.setStudentId(member.getStudentId());
@@ -78,7 +76,7 @@ public class MemberController {
         userTemp.setPhoneNum(member.getPhoneNum());
         userTemp.setEmail(member.getEmail());
 
-        memberService.savaMember(member);
+        memberService.savaMember(userTemp);
         return "redirect:/admin/member/list";
     }
 }

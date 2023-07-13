@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>게시글상세페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+          h1 {
+        font-size: 2em;
+        margin-bottom: 0.5em;
+    }
+
+    p {
+        margin-top: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+
+    .label {
+        font-weight: bold;
+        width: 120px;
+    }
+
+    .content {
+        margin-left: 1em;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1em;
+    }
+
+    .button {
+        display: inline-block;
+        margin-right: 1em;
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.8em;
+    }
+
+    .button:hover {
+        background-color: #0062cc;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="field">
+        <div class="label">TYPE:</div>
+        <div class="content"><h1 th:text="${busTime.type}">타입</h1></div>
+    </div>
+    <div class="field">
+        <div class="label">At School:</div>
+        <div class="content"><p th:text="${busTime.timeAtSchool}" >학교앞시간</p></div>
+    </div>
+    <div class="field">
+        <div class="label">At Station:</div>
+        <div class="content"><p th:text="${busTime.timeAtStation}" >역뒤시간</p></div>
+    </div>
+
+
+
+    <div class="buttons">
+        <a class="button" th:href="@{/admin/busSchedule/delete(id=${busTime.id})}">Delete</a>
+        <a class="button" th:href="@{/admin/busSchedule/modify/{id}(id = ${busTime.id})}">Modify</a>
+    </div>
+</div>
+</body>
+</html>

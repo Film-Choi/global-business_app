@@ -79,32 +79,31 @@
 <div class="container">
   <div class="topnav">
     <a href="/admin/member/list">유저 관리</a>
-    <a class="active" href="/admin/board/list">게시판 관리</a>
-    <a href="/admin/busSchedule/list?type=평일">버스 시간표 관리</a>
+    <a href="/admin/board/list">게시판 관리</a>
+    <a class="active" href="/admin/busSchedule/list?type=평일">버스 시간표 관리</a>
   </div>
-  <h1>Notice Board
-    <button class="register-btn" onclick="location.href = '/admin/board/register'">Register</button>
+  <h1>Bus Schedule
+    <button class="register-btn" onclick="location.href = '/admin/busSchedule/add'">add</button>
+    <button class="register-btn" onclick="location.href = '/admin/busSchedule/list?type=평일'">평일 시간표</button>
+    <button class="register-btn" onclick="location.href = '/admin/busSchedule/list?type=주말'">주말 시간표</button>
   </h1>
   <table>
     <thead>
     <tr>
       <th>ID</th>
-      <th>Title</th>
-      <th>Writer</th>
-      <th>Header</th>
-      <th>Department</th>
-      <th>Upload Time</th>
+      <th>TYPE</th>
+      <th>At School</th>
+      <th>At Station</th>
+
     </tr>
     </thead>
     <tbody>
-    <tr th:each="boardDto : ${boardDto}" class="boardDto">
-      <td th:text="${boardDtoStat.count}"></td>
-<!--      <td th:text="${boardDto.id}"></td>-->
-      <td class="title" th:text="${boardDto.title}" th:attr="onclick=|location.href='/admin/board/view?id=${boardDto.id}'|"></td>
-      <td th:text="${boardDto.writer}"></td>
-      <td th:text="${boardDto.header}"></td>
-      <td th:text="${boardDto.department}"></td>
-      <td th:text="${boardDto.uploadTime}"></td>
+    <tr th:each="busScheduleDto : ${busScheduleDto}" class="busScheduleDto">
+      <td th:text="${busScheduleDtoStat.count}" th:attr="onclick=|location.href='/admin/busSchedule/view?id=${busScheduleDto.id}'|"></td>
+      <!--      <td th:text="${boardDto.id}"></td>-->
+      <td th:text="${busScheduleDto.type}"></td>
+      <td th:text="${busScheduleDto.timeAtSchool}"></td>
+      <td th:text="${busScheduleDto.timeAtStation}"></td>
     </tr>
     </tbody>
   </table>
