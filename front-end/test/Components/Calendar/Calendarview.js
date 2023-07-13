@@ -100,7 +100,7 @@ const CalendarView = () => {
           dotColor: "#00adf5",
           selectedDotColor: "#ffffff",
           arrowColor: "#00adf5",
-          monthTextColor: "#00adf5",
+          monthTextColor: "brown",
           indicatorColor: "blue",
           textDayFontFamily: "monospace",
           textMonthFontFamily: "monospace",
@@ -155,7 +155,7 @@ const CalendarView = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "wheat",
+    backgroundColor: "white",
   },
   calendar: {
     marginTop: 30,
@@ -163,6 +163,8 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 10,
+    borderWidth: 5,
+    borderColor: "brown",
   },
   eventsContainer: {
     flex: 1,
@@ -171,15 +173,16 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 20,
+    color: "brown",
     fontWeight: "bold",
     marginBottom: 20,
   },
   eventText: {
     paddingVertical: 20,
-    backgroundColor: "#ccffff",
+    backgroundColor: "#E2E2E2",
     fontSize: 16,
     marginBottom: 10,
-    width: "70%",
+    width: "90%",
     textAlign: "center",
     borderRadius: 10,
     shadowColor: "black",

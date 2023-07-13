@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -7,62 +7,62 @@ import {
   StyleSheet,
 } from "react-native";
 
-const initialState = { selectedAuthor: null };
+const initialState = { selectedAuthor: null, posts: [], authors: [] };
 
-function reducer(state, action) {
+const reducer = (state, action) => {
   switch (action.type) {
+    case "set_posts":
+      return {
+        ...state,
+        posts: action.payload,
+        authors: action.authors,
+      };
     case "select_author":
-      return { selectedAuthor: action.payload };
+      return {
+        ...state,
+        selectedAuthor: action.payload,
+      };
     case "clear_selection":
-      return initialState;
+      return {
+        ...state,
+        selectedAuthor: null,
+      };
     default:
-      throw new Error();
+      return state;
   }
-}
+};
 
 const Board = ({ navigation }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const authors = [
-    "글로벌경영",
-    "디지털경영",
-    "영미학전공",
-    "중국학전공",
-    "한국학전공",
-    "독일학전공",
-    "표준지식학과",
-  ];
+  useEffect(() => {
+    fetchPosts();
+    console.log("ㅁㄴㅇㄹ")
+  }, []);
 
-  const posts = [
-    {
-      id: 1,
-      title: "글로벌 경영 2023-05-20 엠티 안내",
-      author: "글로벌경영",
-      date: "2023-05-15",
-      content: "내용 1",
-      viewCount: 50,
-    },
-    {
-      id: 2,
-      title: "제목 2",
-      author: "한국학전공",
-      date: "2023-01-02",
-      content: "내용 2",
-      viewCount: 70,
-    },
-    {
-      id: 3,
-      title: "제목 3",
-      author: "독일학전공",
-      date: "2023-01-03",
-      content: "내용 3",
-      viewCount: 30,
-    },
-    // 필요한 만큼 더 추가하세요.
-  ];
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:80/show/board", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
+      const data = await response.json();
+
+      const authors = Array.from(new Set(data.map((post) => post.writer)));
+
+      dispatch({ type: "set_posts", payload: data, authors: authors });
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
+
   const filteredPosts = state.selectedAuthor
-    ? posts.filter((post) => post.author === state.selectedAuthor)
-    : posts;
+    ? state.posts.filter((post) => post.department === state.selectedAuthor)
+    : state.posts;
 
   const isNewPost = (postDate) => {
     // ...isNewPost implementation
@@ -71,14 +71,16 @@ const Board = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        {authors.map((author) => (
+        {state.authors.map((author) => (
           <TouchableOpacity
             key={author}
             style={[
               styles.authorButton,
               state.selectedAuthor === author && styles.selectedAuthorButton,
             ]}
-            onPress={() => dispatch({ type: "select_author", payload: author })}
+            onPress={() =>
+              dispatch({ type: "select_author", payload: author })
+            }
           >
             <Text
               style={
@@ -86,6 +88,7 @@ const Board = ({ navigation }) => {
               }
             >
               {author}
+
             </Text>
           </TouchableOpacity>
         ))}
@@ -108,17 +111,19 @@ const Board = ({ navigation }) => {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.post}
-              onPress={() => navigation.navigate("PostDetails", { post: item })}
+              onPress={() =>
+                navigation.navigate("PostDetails", { post: item })
+              }
             >
               <View style={styles.postHeader}>
-                {isNewPost(item.date) && (
+                {isNewPost(item.uploadTime) && (
                   <Text style={styles.newLabel}>New</Text>
                 )}
                 <Text style={styles.postTitle}>{item.title}</Text>
               </View>
               <View style={styles.postAD}>
-                <Text>작성자: {item.author}</Text>
-                <Text>날짜: {item.date}</Text>
+                <Text>작성자: {item.writer}</Text>
+                <Text>날짜: {item.uploadTime}</Text>
               </View>
             </TouchableOpacity>
           )}
@@ -127,6 +132,7 @@ const Board = ({ navigation }) => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

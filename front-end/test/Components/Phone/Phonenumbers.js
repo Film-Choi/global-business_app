@@ -4,5 +4,5 @@ export const phoneNumbers = [
   { name: "한국학전공 행정실", phoneNumber: "044-860-1210" },
   { name: "중국학전공 행정실", phoneNumber: "044-860-1220" },
   { name: "영미학전공 행정실", phoneNumber: "044-860-1230" },
-  { name: "독일학전공 행정실", phoneNumber: "044-860-1240" },
+  { name: "독일학전공 / 표준·지식학과 행정실", phoneNumber: "044-860-1240" },
 ];

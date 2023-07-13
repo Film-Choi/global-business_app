@@ -15,16 +15,32 @@ export default function LoginPage({ setLoggedIn }) {
   const navigation = useNavigation();
 
   const login = async () => {
-    // 로그인 로직을 구현합니다.
-    // 실제 서버와 통신하여 로그인을 처리해야 합니다.
+    const data = {
+      studentId: username,
+      phoneNum: password
+    };
 
-    // 임시로 아이디와 비밀번호가 "aaa"와 "bbb"인 경우에만 로그인 성공으로 가정합니다.
-    if (username === "aaa" && password === "bbb") {
-      // 로그인 성공 시 화면 이동을 처리합니다.
-      setLoggedIn(true);
-      navigation.navigate("CalendarScreen");
-    } else {
-      console.log("로그인 실패");
+    try {
+      const response = await fetch("http://127.0.0.1:80/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        const result = await response.json(); // 서버 응답에서 데이터 추출
+        if (result.status === "success") {
+          navigation.navigate("RootStack");
+        } else {
+          console.log("로그인 실패");
+        }
+      } else {
+        console.log("로그인 실패");
+      }
+    } catch (error) {
+      console.log("오류 발생:", error);
     }
   };
 
@@ -35,10 +51,16 @@ export default function LoginPage({ setLoggedIn }) {
         source={require("../assets/crimson2positive.gif")}
         resizeMode="contain"
       />
-
-      <Text style={styles.titleStyle}>KOREA UNIVERSITY</Text>
-      <Text style={styles.subtitleStyle}>SEJONG CAMPUS</Text>
+      <br></br>
+      <br></br>
+      <Text style={styles.subtitleStyle2}>KOREA UNIVERSITY</Text>
+      <Text style={styles.subtitleStyle2}>SEJONG CAMPUS</Text>
+      <br></br>
+      <br></br>
       <Text style={styles.subtitleStyle2}>GLOBAL BUSINESS</Text>
+      <br></br>
+      <br></br>
+      <br></br>
       <TextInput
         style={styles.input}
         onChangeText={(text) => setUsername(text)}
@@ -64,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "red",
+    backgroundColor: "brown",
   },
   text: {
     fontSize: 50,
@@ -109,10 +131,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "normal",
     textAlign: "center",
-    marginBottom: 50,
+    marginBottom: 0,
   },
   homeLogo: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
   },
 });
