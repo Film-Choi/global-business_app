@@ -15,6 +15,4 @@ public interface AdminUserRepository extends JpaRepository<AdminDto, String> {
     @Query(value = "SELECT adminPW FROM admininfo " + "where adminId =?1", nativeQuery = true)
     String AdminPasswordCheck(String adminId);
 
-    @Query("select a from AdminDto a WHERE a.adminId = :adminId and a.adminPW = :adminPW")
-    AdminDto returnAdmin(String adminId, String adminPW);
 }

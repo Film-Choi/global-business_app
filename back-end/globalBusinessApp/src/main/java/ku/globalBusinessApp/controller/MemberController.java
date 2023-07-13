@@ -27,9 +27,21 @@ public class MemberController {
         this.memberService = memberService;
     }
     @GetMapping("/admin/member/list")
-    public String showMemberController(Model model){
-        List<UserDto> members = memberService.findMembers();
-        model.addAttribute("members", memberService.findMembers());
+    public String showMemberController(Model model,String searchTarget, String searchWord){
+        List<UserDto> members = null;
+        if(searchWord == null){
+            members = memberService.findMembers();
+        }else if(searchTarget.equals("studentId")){
+//            members = memberService.selectMemberByStudentIdSearch(Long.parseLong(searchWord));
+            members = memberService.selectMemberByStudentIdSearch(searchWord);
+        }else if(searchTarget.equals("studentName")){
+            members = memberService.selectMemberByStudentNameSearch(searchWord);
+        }else if(searchTarget.equals("major")){
+            members = memberService.selectMemberByMajorSearch(searchWord);
+        }else if(searchTarget.equals("phoneNum")){
+            members = memberService.selectMemberByPhoneNumSearch(searchWord);
+        }
+        model.addAttribute("members", members);
         return "/member/memberList";
     }
 

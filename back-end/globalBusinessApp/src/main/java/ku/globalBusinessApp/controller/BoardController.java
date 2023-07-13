@@ -26,10 +26,23 @@ public class BoardController {
         this.boardService = boardService;
     }
     @GetMapping(value = "admin/board/list")
-    public String showPostController(Model model) throws SQLException {
-        List<BoardDto> boardDto = boardService.showPost();
-        System.out.println(boardDto);
-        model.addAttribute("boardDto", boardService.showPost());
+    public String showPostController(Model model,String searchTarget, String searchWord) throws SQLException {
+        List<BoardDto> boardDto = null;
+
+        if(searchWord == null){
+            boardDto = boardService.showPost();
+        }else if(searchTarget.equals("title")){
+            boardDto = boardService.selectPostByTitleSearch(searchWord);
+        }else if(searchTarget.equals("writer")){
+            boardDto = boardService.selectPostByWriterSearch(searchWord);
+        }else if(searchTarget.equals("header")){
+            boardDto = boardService.selectPostByHeaderSearch(searchWord);
+        }else if(searchTarget.equals("department")){
+            boardDto = boardService.selectPostByDepartmentSearch(searchWord);
+        }
+
+
+        model.addAttribute("boardDto", boardDto);
         return "/board/boardList";
     }
     @GetMapping(value = "admin/board/register")
@@ -47,10 +60,10 @@ public class BoardController {
 
     @GetMapping("admin/board/view")
     public String boardView(Model model, Long id){
-        BoardDto boardTemp = boardService.boardview(id);
+        BoardDto boardTemp = boardService.boardView(id);
         boardTemp.setViewCount(boardTemp.getViewCount()+1);
         boardService.savePost(boardTemp);
-        model.addAttribute("post", boardService.boardview(id));
+        model.addAttribute("post", boardService.boardView(id));
 
         return "/board/boardView";
     }
@@ -63,14 +76,14 @@ public class BoardController {
 
     @GetMapping("admin/board/modify/{id}")
     public String boardModify(@PathVariable("id") Long id, Model model){
-        model.addAttribute("post", boardService.boardview(id));
+        model.addAttribute("post", boardService.boardView(id));
 
         return "/board/boardModify";
     }
 
     @PostMapping("admin/board/update/{id}")
     public String boardUpdate(@PathVariable("id") Long id, BoardDto post){
-        BoardDto boardTemp = boardService.boardview(id);
+        BoardDto boardTemp = boardService.boardView(id);
 
         boardTemp.setTitle(post.getTitle());
         boardTemp.setWriter(post.getWriter());
@@ -90,7 +103,7 @@ public class BoardController {
         return list;
     }
 
-    @PostMapping("/show/board")
+    @GetMapping("/show/board")
     @ResponseBody
     public List<BoardDto> showBoard(){
 

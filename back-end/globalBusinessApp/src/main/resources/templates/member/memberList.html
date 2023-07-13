@@ -78,6 +78,19 @@
     <h1>Member List
         <button class="register-btn" onclick="location.href = '/admin/member/add'">add member</button>
     </h1>
+    <form th:action="@{/admin/member/list}" method="get">
+        <div class="dropdowns">
+            <label for="searchTarget">Search Target</label>
+            <select name="searchTarget" id="searchTarget">
+                <option value="studentId">studentId</option>
+                <option value="studentName">name</option>
+                <option value="major">major</option>
+                <option value="phoneNum">phoneNum</option>
+            </select>
+        </div>
+        <input type="text" name="searchWord">
+        <button type="submit">검색</button>
+    </form>
     <table>
         <thead>
         <tr>

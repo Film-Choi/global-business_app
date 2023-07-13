@@ -25,9 +25,6 @@ public class BusScheduleService {
     }
 
     public void savaBusTime(BusScheduleDto busTime) {busScheduleRepository.save(busTime);}
-    public List<BusScheduleDto> findBusTime() {
-        return busScheduleRepository.findAll();
-    }
 
     public BusScheduleDto BusTimeView(Long id){
         return busScheduleRepository.findById(id).get();

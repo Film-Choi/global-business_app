@@ -24,7 +24,7 @@ public class BoardService {
     }
     public void savePost(BoardDto post) {boardRepository.save(post);}
 
-    public BoardDto boardview(Long id){
+    public BoardDto boardView(Long id){
         return boardRepository.findById(id).get();
     }
 
@@ -34,4 +34,24 @@ public class BoardService {
     public List<BoardDto> selectPostByDepartment(String department){
         return boardRepository.findByDepartment(department);
     }
+
+
+
+    public List<BoardDto> selectPostByTitleSearch(String title){
+        return boardRepository.findByTitleContaining(title);
+    }
+
+    public List<BoardDto> selectPostByWriterSearch(String writer){
+        return boardRepository.findByWriterContaining(writer);
+    }
+
+    public List<BoardDto> selectPostByHeaderSearch(String header){
+        return boardRepository.findByHeaderContaining(header);
+    }
+
+    public List<BoardDto> selectPostByDepartmentSearch(String department){
+        return boardRepository.findByDepartmentContaining(department);
+    }
+
+
 }
